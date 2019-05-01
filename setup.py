@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "easysql2pd",
-    version = "0.0.1.1",
+    version = "0.0.1.2",
     keywords = ("pip", "sql","pandas", "pd"),
     description = "sql for pandas",
     long_description = "a simple tools for pandas to use sql",
