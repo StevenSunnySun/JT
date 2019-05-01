@@ -1,6 +1,7 @@
 # JT
 
-'''py
+#example
+
 import easysql2pd as esql
 
 import pandas as pd
@@ -20,4 +21,3 @@ sql = '''select 'aa' as tbl ,count(*) as cnt from aa
 bb = eval(esql.esql_sql)
 
 print(bb)
-'''
