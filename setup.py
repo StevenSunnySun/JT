@@ -12,8 +12,10 @@ setup(
     author = "SSS",
     author_email = "steven_sunny_316@163.com",
 
-    packages = find_packages(),
+    #packages = find_packages(),
+    packages = ['esql_1']
     include_package_data = True,
     platforms = "any",
     install_requires = ['pandas','numpy','sqlalchemy']
+    
 )
