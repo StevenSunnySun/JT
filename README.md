@@ -11,6 +11,7 @@ import numpy as np
 
 
 aa = pd.DataFrame(np.arange(2))
+
 xx = pd.DataFrame(np.arange(3))
 
 sql = '''select 'aa' as tbl ,count(*) as cnt from aa 
