@@ -84,11 +84,7 @@ def sql(df_name_list,
     return pd.read_sql_query(sql,con=engine)
 
 
-        
-if __name__ == '__main__':
 
-      run()       
-        
         
         
         
