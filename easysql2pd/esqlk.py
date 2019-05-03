@@ -2,7 +2,7 @@
 """
 Created on Tue Apr 30 22:36:17 2019
 
-@author: Steven
+@author: 
 """
 
 #开发方便pandas 使用的sql库，可以在pandas环境中，方便的调用sql语句进行etl开发
@@ -23,6 +23,7 @@ Created on Tue Apr 30 22:36:17 2019
 #3、执行sql
 
 #关于数据表更新，如果是手工导入过的，必须再次手工导入才更新，否则非手工导入-每次取最新(尚未实现)
+#直接使用SQL()优化
 
 
 #模块自动执行，在第一次导入时
@@ -33,10 +34,12 @@ engine = create_engine('sqlite:///:memory:')
 #,echo=False
 
 
+s=''' '''
+
 #外部函数执行
-esql_sql = '''esql.sql(esql.get_input_df(sql),
-              [eval(i) for i in esql.get_input_df(sql)],
-              sql)'''
+ss = '''es.sql(es.get_input_df(es.s),
+              [eval(i) for i in es.get_input_df(es.s)],
+              es.s)'''
 
 #根据sql语句解析输入df
 def get_input_df(sql_str):
@@ -64,8 +67,8 @@ def df_to_sql(df_list):
 
 #默认显示数据库的所有表名
 #默认导出表名为tmp_esql_tbl,覆盖导出
-def sql(df_name_list,
-        df_list,
+def sql(df_name_list = [],
+        df_list = [],
         sql="select name from sqlite_master where type='table' order by name"):
 
 
@@ -82,15 +85,3 @@ def sql(df_name_list,
             df.to_sql(df_name, con=engine,if_exists='replace')
 
     return pd.read_sql_query(sql,con=engine)
-
-
-
-        
-        
-        
-        
-        
-        
-        
-        
-
