@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "easysql2pd",
-    version = "0.0.1.14",
+    version = "0.0.1.17",
     keywords = ("pip", "sql","pandas", "pd"),
     description = "sql for pandas",
     long_description = "a simple tools for pandas to use sql",
@@ -13,7 +13,6 @@ setup(
     author_email = "steven_sunny_316@163.com",
 
     packages = find_packages(),
-    #packages = ['easysql2pd',],
     include_package_data = True,
     platforms = "any",
     install_requires = ['pandas','numpy','sqlalchemy']
