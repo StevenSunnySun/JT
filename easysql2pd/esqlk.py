@@ -13,13 +13,19 @@ from sqlalchemy import create_engine
 engine = create_engine('sqlite:///:memory:')
 #,echo=False
 
-
-s=''' '''
-
-#外部函数执行
-ss = '''es.sql(es.get_input_df(es.s),
-              [eval(i) for i in es.get_input_df(es.s)],
-              es.s)'''
+def SQL(st):
+   rr = ('''es.sql_exec(es.get_input_df('''
+           + '''"'''
+           + st
+           + '''"),'''
+           + '''[eval(i) for i in es.get_input_df('''
+           + '''"'''
+           + st
+           + '''")],"'''
+           + st
+           + '''")'''
+        )
+   return rr
 
 #根据sql语句解析输入df
 def get_input_df(sql_str):
@@ -47,7 +53,7 @@ def df_to_sql(df_list):
 
 #默认显示数据库的所有表名
 #默认导出表名为tmp_esql_tbl,覆盖导出
-def sql(df_name_list = [],
+def sql_exec(df_name_list = [],
         df_list = [],
         sql="select name from sqlite_master where type='table' order by name"):
 
