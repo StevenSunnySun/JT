@@ -5,7 +5,7 @@ demo = """
 test.py
 import pandas as pd
 import numpy as np
-import esqlk as es
+import easysql2pd as es
 import sqlite3
 
 sqlite_db_file = '.\\test.db'
