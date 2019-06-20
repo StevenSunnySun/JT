@@ -3,8 +3,11 @@
 #example
 
 import pandas as pd
+
 import numpy as np
+
 import easysql2pd as es
+
 import sqlite3
 
 #sqlite_db_file = 'D:\\test.db'
@@ -29,9 +32,13 @@ cc = SQL('''
 print(cc)
 
 cc = SQL('''
+
          select 'aa1' as tbl,count(*) as cnt from aa
+         
            union all
+           
          select 'bb1' as tbl,count(*) as cnt from bb
+         
        '''
        )
 
