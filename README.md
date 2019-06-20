@@ -10,9 +10,8 @@ import easysql2pd as es
 
 import sqlite3
 
-#sqlite_db_file = 'D:\\test.db'
-
-#es.engine = sqlite3.connect(sqlite_db_file)
+engine = sqlite3.connect(':memory:')
+es.set_engine(engine)
 
 def SQL(st=es.st_tables):
     return es.SQL(globals(),st)
