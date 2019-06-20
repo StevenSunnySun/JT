@@ -8,9 +8,8 @@ import numpy as np
 import easysql2pd as es
 import sqlite3
 
-sqlite_db_file = '.\\test.db'
-
-es.engine = sqlite3.connect(sqlite_db_file)
+engine = sqlite3.connect(':memory:')
+es.set_engine(engine)
 
 def SQL(st=es.st_tables):
     return es.SQL(globals(),st)
@@ -56,7 +55,9 @@ engine = sqlite3.connect(':memory:')
  
 st_tables = "select name from sqlite_master where type='table' order by name"
  
-
+def set_engine(eng):
+    global engine
+    engine = eng
 
 #解析sql 为列表
 def sql_to_list(st):
