@@ -53,8 +53,9 @@ glc = {}
 
 engine = sqlite3.connect(':memory:')
  
-st_tables = "select name from sqlite_master where type='table' order by name"
- 
+st_tables = "select name,type from sqlite_master where type in ('table','view') order by type,name"
+
+
 def set_engine(eng):
     global engine
     engine = eng
@@ -125,9 +126,12 @@ def sql_exec(st,st_list):
     #导入表名,执行sql，输出结果
     for i in np.arange(len(df_name_list)):
         df_name = df_name_list[i]
+        #先判断 fixed_table，若无则重新写入数据库
         if df_name not in ff['name'].values:
-            df = glc[df_name]
-            df.to_sql(df_name, con=engine,if_exists='replace',index=True)
+            #再判断当前 python 空间的 df，若有则重新写入数据库
+            if df_name in glc.keys():
+                df = glc[df_name]
+                df.to_sql(df_name, con=engine,if_exists='replace',index=True)
  
     #此处可考虑重置索引，便于统计行数，而无需再使用count(*)
     return pd.read_sql_query(st,con=engine)
@@ -150,7 +154,7 @@ def SQL(gg,st):
     global glc
     glc = gg
     #默认查询所有表名
-    if st == "select name from sqlite_master where type='table' order by name":
+    if st == "select name,type from sqlite_master where type in ('table','view') order by type,name":
         return pd.read_sql_query(st, engine)
  
     st = st.strip()
