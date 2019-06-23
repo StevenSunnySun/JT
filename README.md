@@ -1,4 +1,5 @@
 # JT
+#依次判断：fixed_table, 当前python空间，sqlite数据库
 
 #example
 
